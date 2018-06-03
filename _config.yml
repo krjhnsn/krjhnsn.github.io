@@ -1,7 +1,13 @@
 # Site settings
+<<<<<<< HEAD
 title:          krjhnsn.blog
 description:    "A moderately interesting blog"
 url:            "https://krjhnsn.github.io"
+=======
+title:          Tale
+description:    "Minimal Jekyll theme for storytellers"
+url:            "https://chesterhow.github.io"
+>>>>>>> b8649bd3cf171f95f093470e7ddc04b04290b609
 
 # Author
 author:
