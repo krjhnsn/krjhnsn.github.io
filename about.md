@@ -1,15 +1,17 @@
 ---
 layout: post
 title: "About"
-author: "Chester"
+author: "Keir"
 permalink: /about/
 ---
 
-A friend of mine writes short stories. One sunny day, I asked if he wanted a website to showcase his works and he agreed. I decided to use GitHub Pages to host his site. That way he wouldn't have to buy a domain and a server.
+Hello! This blog is an experiment in creating a light-weight, simple, site that can be used to share ideas and useful knowledge.
 
-While doing some research up on GitHub Pages, I accidentally chanced upon this _simple, blog-aware, static site generator_ called [Jekyll](https://jekyllrb.com/) which works really well with GitHub Pages. I figured it would do just fine for my friend and I set about searching for a pretty theme. I wanted a theme with a _book-ish_ vibe. Unfortunately, most of the themes were too modern. Eventually, I caved and begun working on my own theme. With the help of [Poole](https://github.com/poole/poole), the Jekyll Butler, I was able to build **Tale**.
+While thinking about starting this project, I anticipated that simple would be better and so I started looking for site infrastructure that would be convenient to manage, free to host, and nice to look at. After looking into a number of options, I found the winning combination: [GitHub Pages](https://pages.github.com/) and [Jekyll](https://jekyllrb.com/). I am using the [Tale Theme](https://github.com/chesterhow/tale), kindly developed and shared on Github by chesterhow.
 
-## Contribute
-Feel free to create an issue or make a pull request on [GitHub](https://github.com/chesterhow/tale).
+And that's it! I hope someone will find something useful here and if that's the case, then it was all worth it! 
+
+## Feedback
+Feel free to create an issue or make a pull request on [GitHub](https://github.com/krjhnsn/krjhnsn.github.io).
 
 Thanks for reading!
