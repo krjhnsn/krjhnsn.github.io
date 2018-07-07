@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Here Goes..."
-author: "Keir"
+author: "Keir Johnson"
 ---
 
 Well, here it is. The first post. It's in the wild- running like a unicorn with a sloth on its back. 

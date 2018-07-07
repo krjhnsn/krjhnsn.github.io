@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Data input/output in Python - useful concepts for any dataset"
-author: "Keir"
+author: "Keir Johnson"
 ---
 
 Data is the life-blood (metaphorically speaking) that is pumped through the veins of any software program. Whether it is extracting data from a database, reading flat text files, or exchanging data via an API, understanding data exchange is fundamental. In the article below, I've highlighted what I consider to be important concepts for working with data in Python, specifically, for data processing or data science applications.
 
 ### Pandas for data input/output
 
-Just mention the words 'data' and 'python' and without a doubt, one of the very next words you'll hear is 'pandas'. Pandas is an extremely popular and powerful Python package for working with data. Pandas can read a variety of file types (e.g., .txt, .csv, .xlsx) to create a Python DataFrame, which is basically just a data table that can be easily manipulated using python. Pandas has a ton of functionality and you'll use it A LOT. It's definitely worth learning about what pandas can do from the official documentation [here.](https://pandas.pydata.org/pandas-docs/stable/)
+Just mention the words 'data' and 'python' and without a doubt, one of the very next words you'll hear is 'pandas'. Pandas is an extremely popular and powerful Python package for working with data. Pandas can read a variety of file types (e.g., .txt, .csv, .xlsx) to create a Python DataFrame, which is basically just a data table that can be easily manipulated using python. Pandas has a ton of functionality and you'll use it A LOT. It's definitely worth learning about what pandas can do from the [official documentation.](https://pandas.pydata.org/pandas-docs/stable/)
 
 With so much functionality built into pandas, it can be hard to know what's needed for a typical data input/output task. Let's walk through an example to highlight some of the key concepts. A typical workflow for reading and working with a data set might look like this:
 
@@ -17,13 +17,13 @@ With so much functionality built into pandas, it can be hard to know what's need
 3. Manipulate data, apply calculations or logic, combine with other data, train a model, etc.
 4. Write the output data to a file or return the data to another system or process.
 
-For our example, suppose we have a data set of recent customer transactions that looks like the table below. The table contains a mix of data types (numbers, string, dates). Let's read this file using pandas and see how the workflow above applies.
+For our example, suppose we have a data set of recent customer transactions that looks like the table below. The table contains a mix of data types (numbers, string, dates) and you can see that we have some missing values. Let's read this file using pandas and see how the workflow above applies.
 
 Transaction ID | Store ID | Product SKU | Purchase Date | Purchase Price
 | --- | --- | --- | --- | --- |
 001 | ABC | X959 | 6/7/2018 | $5.00
 002 | CDE | X951 | 6/15/2018 | $1.00
-003 | CDE | Y345 | 7/1/2018 | $3.00
+003 | CDE | | 7/1/2018 | $3.00
 004 | ABC | J788 | 7/4/2018 | $8.00
 005 | FGH | K001 | 7/6/2018 | $12.00
 006 | ABC | | 7/6/2018 | $15.00
@@ -33,7 +33,7 @@ The Python below demonstrates how we might read this data from a .csv file. Note
 
 After reading in a file, it's usually a good idea to take a look at the first few rows using `head()` to check that we see some of the data we expect and that the data structure is intact. We can use `shape` to validate that the number of rows and columns in the resulting DataFrame matches what we expect from the source file.
 
-It's always a good idea to cleanse incoming data. There are quite a few possibilities for doing this depending on the type of data and the application. However, one option that I've found useful is to strip extra whitespace and newline characters using `strip()`. These sneaky extra characters can cause headaches when you're trying to join multiple datasets together or perform comparisons. In the example below, I use a `for` loop to iterate all the columns in the DataFrame and apply the `strip` function. Regex is also a useful tool for cleansing data. You can use regex replace unneeded characters or validate that a string of characters (e.g., a phone number) follows a certain format (e.g., 111-111-1111).
+It's always a good idea to cleanse incoming data. There are quite a few possibilities for doing this depending on the type of data and the application. However, one option that I've found useful is to strip extra whitespace and newline characters using `strip()`. These sneaky extra characters can cause headaches when you're trying to join multiple datasets together or perform comparisons. In the example below, I use a `for` loop to iterate all the columns in the DataFrame and apply the `strip` function. Regex is also a useful tool for cleansing data. You can use regex to replace unneeded characters or validate that a string of characters (e.g., a phone number) follows a certain format (e.g., 111-111-1111).
 
 Depending on your application you may want to replace missing (null) values. Pandas provides an easy way to do this with the `fillna()` function. Below I have replaced missing values with the text 'NA'.
 
@@ -82,11 +82,12 @@ Data columns (total 5 columns):
 Transaction ID    6 non-null int64
 Store ID          6 non-null object
 Product SKU       5 non-null object
-Purchase Date     6 non-null datetime64[ns]
-Purchase Price    6 non-null float64
-dtypes: datetime64[ns](1), float64(1), int64(1), object(2)
+Purchase Date     6 non-null object
+Purchase Price    6 non-null object
+dtypes: int64(1), object(4)
 memory usage: 320.0+ bytes
 ```
+<center> Output of running 'info()' </center>
 
 Now that we've reviewed the data types, we can go ahead and convert the 'Purchase Date' and 'Purchase Price' columns to the data types we need. The code below achieves this using pandas `to_datetime()` function to convert the 'Purchase Date' to a 'datetime' data type and some regex to remove the '$' in the 'Purchase Price' and convert it to a floating point number (float). Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
 
@@ -113,7 +114,7 @@ df.to_csv(outputPath, index = False)
 ```
 ### Python's built-in file reader
 
-As your data set becomes bigger and more complex, things inevitably will go wrong. You'll encounter problems with bogus data, poor data structure, unexpected values, etc. To mitigate this problem, it's beneficial to know something about the meta-data, that is, the characteristics of the data set you're working with. 
+As your data set becomes bigger and more complex, things inevitably will go wrong. You'll encounter problems with bogus data, poor data structure, unexpected values, etc. To mitigate these problems, it's beneficial to know something about the meta-data, that is, the characteristics of the data set you're working with. 
 
 Meta-data includes things such as the structure (number of rows and columns, delimeter), the type of data (numbers, strings, dates), character encoding, the appearance of null (missing) values, etc. Having an understanding of this meta-data will allow you to perform validation on incoming data to ensure it is up to snuff before adding it to your dataset and will also help you troubleshoot errors when they come up.
 
@@ -126,7 +127,7 @@ Transaction ID|Store ID|Product SKU|Purchase Date|Purchase Price
 001|ABC|X959|6/7/2018|$5.00
 002|CDE|X951|6/15/2018|$1.00
 003|CDE|Y345|7/1/2018|$3.00
-004|ABC|J788|$8.00				<-- this row only contains four pipe-delimited values
+004|ABC|J788|$8.00	<-- this row only contains four pipe-delimited values
 005|FGH|K001|7/6/2018|$12.00
 006|ABC||7/6/2018|$15.00
 ```
@@ -135,7 +136,7 @@ To process this data, the file is first opened using `with open(filename, 'r') a
 
 If five elements are not found, we add the contents of the row to a list of discarded rows with `discardedRows.append(discardedRow)`. This list could be used to generate a processing report that we can use to investigate why certain rows were discarded. Often, data integrity issues result from upstream processes that generate the original data set and having information about the discarded rows can be useful for troubleshooting!
 
-Obviously, more advanced logic could be applied to validate each row and/or specific elements in each row, but hopefully, this illustrates the concept. You'll have to weigh trade-offs between adding more advanced logic and the impact on run time when it comes to implementing data validation in production-level applications.
+Obviously, more advanced logic could be applied to validate each row and/or specific elements in each row, but hopefully this illustrates the concept. You'll have to weigh trade-offs between adding more advanced logic and the impact on run time when it comes to implementing data validation in production-level applications.
 
 ```python
 # path to text file

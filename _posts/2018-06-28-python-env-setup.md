@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Setup your Python development environment"
-author: "Keir"
+author: "Keir Johnson"
 ---
 
 TLDR; Install the [Anaconda distribution,](https://www.anaconda.com/distribution/) open up Spyder or a Jupyter Notebook, and read the very helpful documentation to get started writing Python.
