@@ -89,7 +89,6 @@ Purchase Price    6 non-null object
 dtypes: int64(1), object(4)
 memory usage: 320.0+ bytes
 ```
-<br>
 
 Now that we've reviewed the data types, we can go ahead and convert the 'Purchase Date' and 'Purchase Price' columns to the data types we need. The code below achieves this using pandas `to_datetime()` function to convert the 'Purchase Date' to a 'datetime' data type and some regex to remove the '$' in the 'Purchase Price' and convert it to a floating point number (float). Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
 
