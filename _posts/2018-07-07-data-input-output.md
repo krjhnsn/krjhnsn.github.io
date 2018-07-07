@@ -30,7 +30,7 @@ Transaction ID | Store ID | Product SKU | Purchase Date | Purchase Price
 
 
 
-The Python below demonstrates how we might read this data from a .csv file. Note that we specify the delimiting character (',' in this case).
+The Python below demonstrates how we might read this data from a .csv file. Note that we specify the delimiting character (' , ' in this case).
 
 After reading in a file, it's usually a good idea to take a look at the first few rows using `head()` to check that we see some of the data we expect and that the data structure is intact. We can use `shape` to validate that the number of rows and columns in the resulting DataFrame matches what we expect from the source file.
 
