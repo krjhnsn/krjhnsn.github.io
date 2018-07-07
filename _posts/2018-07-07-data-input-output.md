@@ -8,7 +8,7 @@ Data is the life-blood (metaphorically speaking) that is pumped through the vein
 
 ### Pandas for data input/output
 
-Just mention the words 'data' and 'python' and without a doubt, one of the very next words you'll hear is 'pandas'. Pandas is an extremely popular and powerful Python package for working with data. Pandas can read a variety of file types (e.g., .txt, .csv, .xlsx) to create a Python DataFrame, which is basically just a data table that can be easily manipulated using python. Pandas has a ton of functionality and you'll use it A LOT. It's definitely worth learning about what pandas can do from the official documentation [here.](https://pandas.pydata.org/pandas-docs/stable/).
+Just mention the words 'data' and 'python' and without a doubt, one of the very next words you'll hear is 'pandas'. Pandas is an extremely popular and powerful Python package for working with data. Pandas can read a variety of file types (e.g., .txt, .csv, .xlsx) to create a Python DataFrame, which is basically just a data table that can be easily manipulated using python. Pandas has a ton of functionality and you'll use it A LOT. It's definitely worth learning about what pandas can do from the official documentation [here.](https://pandas.pydata.org/pandas-docs/stable/)
 
 With so much functionality built into pandas, it can be hard to know what's needed for a typical data input/output task. Let's walk through an example to highlight some of the key concepts. A typical workflow for reading and working with a data set might look like this:
 
@@ -27,6 +27,8 @@ Transaction ID | Store ID | Product SKU | Purchase Date | Purchase Price
 004 | ABC | J788 | 7/4/2018 | $8.00
 005 | FGH | K001 | 7/6/2018 | $12.00
 006 | ABC | | 7/6/2018 | $15.00
+
+
 
 The Python below demonstrates how we might read this data from a .csv file. Note that we specify the delimiting character (',' in this case).
 
