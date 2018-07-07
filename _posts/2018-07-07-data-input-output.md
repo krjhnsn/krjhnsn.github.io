@@ -75,6 +75,8 @@ After running `info()`, we can see that the 'Purchase Date' column was assigned 
 
 The 'Purchase Price' column also needs some work. The dollar sign on purchase price has resulted in the data being assigned the `object` data type which will cause problems if we try to perform calculations on this column, for example, calculate the total amount purchased at each store. We will have to convert this column to a numeric (e.g., int, float) data type.
 
+The output of running ```df.info()``` can be seen below:
+
 ```
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 6 entries, 0 to 5
@@ -87,7 +89,6 @@ Purchase Price    6 non-null object
 dtypes: int64(1), object(4)
 memory usage: 320.0+ bytes
 ```
-<center> *Output of running 'info()'* </center>
 <br>
 
 Now that we've reviewed the data types, we can go ahead and convert the 'Purchase Date' and 'Purchase Price' columns to the data types we need. The code below achieves this using pandas `to_datetime()` function to convert the 'Purchase Date' to a 'datetime' data type and some regex to remove the '$' in the 'Purchase Price' and convert it to a floating point number (float). Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
