@@ -120,13 +120,13 @@ Meta-data includes things such as the structure (number of rows and columns, del
 
 In scenarios where it is important to check if incoming data meet our expectations, an alternative approach to using pandas is to use Python's built-in file reader. Rather than having pandas bring in all the data at once, you can read in each row individually and perform validation before retaining it for the final data set.
 
-Going back to the transactions data example, assume the data is provided in a pipe-delimited text file with the contents as seen below. This time, one of the rows has been corrupted and contains only four elements. We know that we should expect five elements (columns) per row and we can use Python to validate that each row meets this expectation before adding it to our final data set.
+Going back to the transactions data example, assume that this time the data is provided in a pipe-delimited text file with the contents as seen below. Inspecting row four you can that the data has been corrupted and only contains four elements. We know that we should expect five elements (columns) per row and we can use Python to validate that each row meets this expectation before adding it to our final data set.
 
 ```
 Transaction ID|Store ID|Product SKU|Purchase Date|Purchase Price
 001|ABC|X959|6/7/2018|$5.00
 002|CDE|X951|6/15/2018|$1.00
-003|CDE|Y345|7/1/2018|$3.00
+003|CDE||7/1/2018|$3.00
 004|ABC|J788|$8.00	<-- this row only contains four pipe-delimited values
 005|FGH|K001|7/6/2018|$12.00
 006|ABC||7/6/2018|$15.00
