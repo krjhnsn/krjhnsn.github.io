@@ -17,7 +17,7 @@ With so much functionality built into pandas, it can be hard to know what's need
 3. Manipulate data, apply calculations or logic, combine with other data, train a model, etc.
 4. Write the output data to a file or return the data to another system or process.
 
-For our example, suppose we have a data set of recent customer transactions that looks like the table below. The table contains a mix of data types (numbers, string, dates) and you can see that we have some missing values. Let's read this file using pandas and see how the workflow above applies.
+For our example, suppose we have a data set of recent customer transactions that looks like the table below. The table contains a mix of data types (numbers, string, dates) and you can see that some data is missing in the 'Product SKU' column. Let's read this file using pandas and see how the workflow above applies.
 
 Transaction ID | Store ID | Product SKU | Purchase Date | Purchase Price
 | --- | --- | --- | --- | --- |
