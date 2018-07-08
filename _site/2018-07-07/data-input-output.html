@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+      Data input/output in Python - useful concepts for any dataset &middot; krjhnsn.blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+</head>
+
+
+  <body>
+    <nav class="nav">
+      <div class="nav-container">
+        <a href="/">
+          <h2 class="nav-title">krjhnsn.blog</h2>
+        </a>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/">Posts</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div class="post">
+  <div class="post-info">
+    <span>Written by</span>
+    
+        Keir Johnson
+    
+
+    
+      <br>
+      <span>on&nbsp;</span><time datetime="2018-07-07 00:00:00 -0600">July 07, 2018</time>
+    
+  </div>
+
+  <h1 class="post-title">Data input/output in Python - useful concepts for any dataset</h1>
+  <div class="post-line"></div>
+
+  <p>Data is the life-blood (metaphorically speaking) that is pumped through the veins of any software program. Whether it is extracting data from a database, reading flat text files, or exchanging data via an API, understanding data exchange is fundamental. In the article below, I’ve highlighted what I consider to be important concepts for working with data in Python, specifically, for data processing or data science applications.</p>
+
+<h3 id="pandas-for-data-inputoutput">Pandas for data input/output</h3>
+
+<p>Just mention the words ‘data’ and ‘python’ and without a doubt, one of the very next words you’ll hear is ‘pandas’. Pandas is an extremely popular and powerful Python package for working with data. Pandas can read a variety of file types (e.g., .txt, .csv, .xlsx) to create a Python DataFrame, which is basically just a data table that can be easily manipulated using python. Pandas has a ton of functionality and you’ll use it A LOT. It’s definitely worth learning about what pandas can do from the <a href="https://pandas.pydata.org/pandas-docs/stable/">official documentation.</a></p>
+
+<p>With so much functionality built into pandas, it can be hard to know what’s needed for a typical data input/output task. Let’s walk through an example to highlight some of the key concepts. A typical workflow for reading and working with a data set might look like this:</p>
+
+<ol>
+  <li>Read in data from an external file, system, or process.</li>
+  <li>Validate, cleanse, and format data.</li>
+  <li>Manipulate data, apply calculations or logic, combine with other data, train a model, etc.</li>
+  <li>Write the output data to a file or return the data to another system or process.</li>
+</ol>
+
+<p>For our example, suppose we have a data set of recent customer transactions that looks like the table below. The table contains a mix of data types (numbers, string, dates) and you can see that we have some missing values. Let’s read this file using pandas and see how the workflow above applies.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction ID</th>
+      <th>Store ID</th>
+      <th>Product SKU</th>
+      <th>Purchase Date</th>
+      <th>Purchase Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>001</td>
+      <td>ABC</td>
+      <td>X959</td>
+      <td>6/7/2018</td>
+      <td>$5.00</td>
+    </tr>
+    <tr>
+      <td>002</td>
+      <td>CDE</td>
+      <td>X951</td>
+      <td>6/15/2018</td>
+      <td>$1.00</td>
+    </tr>
+    <tr>
+      <td>003</td>
+      <td>CDE</td>
+      <td> </td>
+      <td>7/1/2018</td>
+      <td>$3.00</td>
+    </tr>
+    <tr>
+      <td>004</td>
+      <td>ABC</td>
+      <td>J788</td>
+      <td>7/4/2018</td>
+      <td>$8.00</td>
+    </tr>
+    <tr>
+      <td>005</td>
+      <td>FGH</td>
+      <td>K001</td>
+      <td>7/6/2018</td>
+      <td>$12.00</td>
+    </tr>
+    <tr>
+      <td>006</td>
+      <td>ABC</td>
+      <td> </td>
+      <td>7/6/2018</td>
+      <td>$15.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+The Python below demonstrates how we might read this data from a .csv file. Note that we specify the delimiting character (‘ , ‘ in this case).</p>
+
+<p>After reading in a file, it’s usually a good idea to take a look at the first few rows using <code class="highlighter-rouge">head()</code> to check that we see some of the data we expect and that the data structure is intact. We can use <code class="highlighter-rouge">shape</code> to validate that the number of rows and columns in the resulting DataFrame matches what we expect from the source file.</p>
+
+<p>It’s always a good idea to cleanse incoming data. There are quite a few possibilities for doing this depending on the type of data and the application. However, one option that I’ve found useful is to strip extra whitespace and newline characters using <code class="highlighter-rouge">strip()</code>. These sneaky extra characters can cause headaches when you’re trying to join multiple datasets together or perform comparisons. In the example below, I use a <code class="highlighter-rouge">for</code> loop to iterate all the columns in the DataFrame and apply the <code class="highlighter-rouge">strip</code> function. Regex is also a useful tool for cleansing data. You can use regex to replace unneeded characters or validate that a string of characters (e.g., a phone number) follows a certain format (e.g., 111-111-1111).</p>
+
+<p>Depending on your application you may want to replace missing (null) values. Pandas provides an easy way to do this with the <code class="highlighter-rouge">fillna()</code> function. Below I have replaced missing values with the text ‘NA’.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># import pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c"># specify path to the .csv file</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/kjohnson/example_transaction_data.csv'</span>
+
+<span class="c"># read .csv to dataframe using pandas, specify the delimiter (',' in this case)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">','</span><span class="p">)</span>
+
+<span class="c"># get list of column names in the dataframe (to be used later)</span>
+<span class="n">colHeaders</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c"># inspect the first 3 rows of the dataframe to ensure the data was read in by pandas as expected</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c"># number of rows and columns (rows, columns)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="c"># remove extra whitespace and newlines using 'strip()'</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">column_list</span><span class="p">:</span> <span class="c"># it's handy to have a list of the columns!</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c"># fill missing values in the DataFrame with the text 'NA'</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">'NA'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As pandas reads in a file, it will do its best to interpret the data type for each column. It’s good to get into the habit of checking the data types of your DataFrame to avoid troubleshooting errors later. To see the data types pandas ended up assigning while reading in the file, you can use <code class="highlighter-rouge">info()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># display columns in the DataFrame and their type (e.g., float, string, datetime)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>After running <code class="highlighter-rouge">info()</code>, we can see that the ‘Purchase Date’ column was assigned the <code class="highlighter-rouge">object</code> data type. This will cause issues if we want to do date comparisons and so we’ll need to convert this to a ‘datetime’ data type.</p>
+
+<p>The ‘Purchase Price’ column also needs some work. The dollar sign on purchase price has resulted in the data being assigned the <code class="highlighter-rouge">object</code> data type which will cause problems if we try to perform calculations on this column, for example, calculate the total amount purchased at each store. We will have to convert this column to a numeric (e.g., int, float) data type.</p>
+
+<p>The output of running <code class="highlighter-rouge">df.info()</code> can be seen below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 5 columns):
+Transaction ID    6 non-null int64
+Store ID          6 non-null object
+Product SKU       5 non-null object
+Purchase Date     6 non-null object
+Purchase Price    6 non-null object
+dtypes: int64(1), object(4)
+memory usage: 320.0+ bytes
+</code></pre></div></div>
+
+<p>Now that we’ve reviewed the data types, we can go ahead and convert the ‘Purchase Date’ and ‘Purchase Price’ columns to the data types we need. The code below achieves this using pandas <code class="highlighter-rouge">to_datetime()</code> function to convert the ‘Purchase Date’ to a ‘datetime’ data type and some regex to remove the ‘$’ in the ‘Purchase Price’ and convert it to a floating point number (float). Running <code class="highlighter-rouge">info()</code> again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (<em>success!</em>)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># convert 'Purchase Date' string to datetime</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'Purchase Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'Purchase Date'</span><span class="p">])</span>
+
+<span class="c"># convert 'Purchase Price' column to a number by removing the '$' and converting</span>
+<span class="n">df</span><span class="p">[</span><span class="s">'Purchase Price'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'Purchase Price'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'[</span><span class="err">\</span><span class="s">$,]'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>All that time and effort spent on data exploration, cleansing, and data type casting now pays off. We can now perform interesting operations to the data such as finding all the purchases that took place in the month of July or calculating the total purchase amount for each store. Pandas makes writing the results back to a .csv file easy with the <code class="highlighter-rouge">to_csv</code> function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># get all purchases from July</span>
+<span class="n">dfJulyPurchases</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'Purchase Date'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="c"># get total purchase amount by store</span>
+<span class="n">dfStoreAmount</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s">'Store ID'</span><span class="p">])[</span><span class="s">'Purchase Price'</span><span class="p">]</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+
+<span class="c"># write total purchase amount back to a .csv file</span>
+<span class="n">outputPath</span> <span class="o">=</span> <span class="s">'/Users/kjohnson/PurchasesByStore.csv'</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">outputPath</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="pythons-built-in-file-reader">Python’s built-in file reader</h3>
+
+<p>As your data set becomes bigger and more complex, things inevitably will go wrong. You’ll encounter problems with bogus data, poor data structure, unexpected values, etc. To mitigate these problems, it’s beneficial to know something about the meta-data, that is, the characteristics of the data set you’re working with.</p>
+
+<p>Meta-data includes things such as the structure (number of rows and columns, delimeter), the type of data (numbers, strings, dates), character encoding, the appearance of null (missing) values, etc. Having an understanding of this meta-data will allow you to perform validation on incoming data to ensure it is up to snuff before adding it to your dataset and will also help you troubleshoot errors when they come up.</p>
+
+<p>In scenarios where it is important to check if incoming data meet our expectations, an alternative approach to using pandas is to use Python’s built-in file reader. Rather than having pandas bring in all the data at once, you can read in each row individually and perform validation before retaining it for the final data set.</p>
+
+<p>Going back to the transactions data example, assume that this time the data is provided in a pipe-delimited text file with the contents as seen below. Inspecting row four you can that the data has been corrupted and only contains four elements. We know that we should expect five elements (columns) per row and we can use Python to validate that each row meets this expectation before adding it to our final data set.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Transaction ID|Store ID|Product SKU|Purchase Date|Purchase Price
+001|ABC|X959|6/7/2018|$5.00
+002|CDE|X951|6/15/2018|$1.00
+003|CDE||7/1/2018|$3.00
+004|ABC|J788|$8.00	&lt;-- this row only contains four pipe-delimited values
+005|FGH|K001|7/6/2018|$12.00
+006|ABC||7/6/2018|$15.00
+</code></pre></div></div>
+
+<p>To process this data, the file is first opened using <code class="highlighter-rouge">with open(filename, 'r') as f:</code>. Each line is read into a list using <code class="highlighter-rouge">readlines()</code>. Next, each line is split into its elements using <code class="highlighter-rouge">split('|')</code> and we check if there are five resulting elements. If five elements are found, then we add them to the list <code class="highlighter-rouge">keepRows</code> which is later converted to a DataFrame that holds the final data set.</p>
+
+<p>If five elements are not found, we add the contents of the row to a list of discarded rows with <code class="highlighter-rouge">discardedRows.append(discardedRow)</code>. This list could be used to generate a processing report that we can use to investigate why certain rows were discarded. Often, data integrity issues result from upstream processes that generate the original data set and having information about the discarded rows can be useful for troubleshooting!</p>
+
+<p>Obviously, more advanced logic could be applied to validate each row and/or specific elements in each row, but hopefully this illustrates the concept. You’ll have to weigh trade-offs between adding more advanced logic and the impact on run time when it comes to implementing data validation in production-level applications.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># path to text file</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s">'/Users/kjohnson/Documents/Python/transactions.txt'</span>
+
+<span class="c"># open the file, read it, then close it</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+ 
+<span class="c"># check each row - if it has 5 elements keep it otherwise discard it</span>
+<span class="n">discardedRows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">rowNum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">keepRows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">))</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        	<span class="n">keepRows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'|'</span><span class="p">))</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="n">discardedRow</span> <span class="o">=</span> <span class="p">[</span><span class="n">rowNum</span><span class="p">,</span> <span class="n">line</span><span class="p">]</span>
+		<span class="n">discardedRows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">discardedRow</span><span class="p">)</span>
+
+	<span class="n">rowNum</span> <span class="o">=</span> <span class="n">rowNum</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c"># first row in file contains column headers, create dataframe with those columns</span>
+<span class="n">colHeaders</span> <span class="o">=</span> <span class="n">keepRows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c"># remove row headers, remaining rows will be used for dataframe</span>
+<span class="n">keepRows</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c"># convert to dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">keepRows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">colHeaders</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Taking the time to validate, cleanse, explore, and format your data as a preliminary step in your workflow will help avoid downstream issues and allow you to make the most of your data. Hopefully, this article has given you some ideas on how to do that. As always, I recommend consulting documentation to learn more about what’s possible with pandas and other Python features. Thank you for reading!</p>
+
+
+</div>
+
+<div class="pagination">
+  
+  
+    <a href="/2018-06-28/python-env-setup" class="right arrow">&#8594;</a>
+  
+
+  <a href="#" class="top">Top</a>
+</div>
+
+    </main>
+
+    <footer>
+      <span>
+        &copy; <time datetime="2018-07-08 12:13:22 -0600">2018</time> Keir Johnson.
+      </span>
+    </footer>
+    
+  </body>
+</html>
