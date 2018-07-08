@@ -97,7 +97,7 @@ Now that we've reviewed the data types, we can go ahead and convert the 'Purchas
 df['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
 
 # convert 'Purchase Price' column to a number by removing the '$' and converting
-df['Purchase Price'] = df['Purchase Price'].replace('[\$,]', '', regex=True).astype(float)
+df['Purchase Price'] = df['Purchase Price'].replace('[$]', '', regex=True).astype(float)
 ```
 
 All that time and effort spent on data exploration, cleansing, and data type casting now pays off. We can now perform interesting operations to the data such as finding all the purchases that took place in the month of July or calculating the total purchase amount for each store. Pandas makes writing the results back to a .csv file easy with the `to_csv` function.
