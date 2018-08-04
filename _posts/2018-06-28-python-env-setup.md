@@ -34,7 +34,9 @@ Assuming you have installed Anaconda successfully, you can open up Sypder from A
 
 3. Ipython console - this is your window into the Python interpreter which is the program that reads and runs your code behind the scenes. The console serves as an indicator to tell you if your code ran successfully or if there are errors that prevent the code from executing successfully. The console is interactive too, which means that you can type in the console to execute certain commands and interact with the code you have written.
 
-![Sypder IDE]({{"/assets/spyder-intro.png" | absolute_url}})
+{% include images.html
+max-width="100%" file="/assets/spyder-intro.png" alt="Spyder IDE"
+caption="The Spyder IDE" %}
 
 Let's write some code to demonstrate how this all works. Write the code below in the code editing window:
 
