@@ -49,16 +49,14 @@ exampleTraceGo = go.Scatter(
         x = [1, 2, 3, 7, 8],
         y = [2, 4, 5, 7, 1],
         name = 'example trend data',
-        mode = 'lines+markers'
-        )
+        mode = 'lines+markers')
 
 # example using dictionary
 exampleTraceDict = {
          'x' : [1, 2, 3, 7, 8],
         'y' : [2, 4, 5, 7, 1],
         'name' : 'example trend data',
-        'mode' : 'lines+markers'
-        }
+        'mode' : 'lines+markers'}
 ```
 
 Whether you decide to use ```graph_objs``` or a dictionary to construct your data object, the key thing to remember is that both use key-value pairs. The keys represent the available configuration options and values are the parameters you provide as inputs. When in doubt, follow the plotly documentation.
@@ -93,15 +91,13 @@ femaleTrace =  go.Scatter(
         x = femaleData['Year'],
         y = femaleData['Average Life Expectancy (Years)'],
         name = 'Females',
-        mode = 'lines+markers'
-        )
+        mode = 'lines+markers')
 
 maleTrace = go.Scatter(
         x = maleData['Year'],
         y = maleData['Average Life Expectancy (Years)'],
         name = 'Males',
-        mode = 'lines+markers'
-        )
+        mode = 'lines+markers')
 
 bothTrace = go.Scatter(
         x = bothData['Year'],
@@ -157,13 +153,11 @@ for sex in sexesList:
         trace = go.Scatter(
                 x = dfTrend['Year'],
                 y = dfTrend['Average Life Expectancy (Years)'],
-                mode = 'lines+markers'
-                )
+                mode = 'lines+markers')
        
         layout = {'title': chartTitle.format(race, sex),
                   'xaxis': {'title': 'YEAR'},
-                  'yaxis': {'title': 'AVG. LIFE EXPECTANCY (YRS)'},
-                  }
+                  'yaxis': {'title': 'AVG. LIFE EXPECTANCY (YRS)'}}
        
         figure = dict(data = [trace], layout = layout)
        
@@ -245,7 +239,7 @@ layout = dict(
             lakecolor = 'rgb(255, 255, 255)'),
              )
    
-figure = dict( data=data, layout=layout )
+figure = dict(data=data, layout=layout)
 filename = 'Sasquatch Sightings - It''s Real.html'
 py.offline.plot(figure, filename = str(filename))
 ```
