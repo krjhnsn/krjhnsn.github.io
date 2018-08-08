@@ -104,7 +104,7 @@ df['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
 df['Purchase Price'] = df['Purchase Price'].replace('[$]', '', regex=True).astype(float)
 ```
 
-Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
+Running `info()` again on the DataFrame will allow you to validate that, indeed, the data type conversions worked as expected and that the 'Purchase Date' and 'Purchase Price' columns have been converted to 'datetime' and 'float64' data types, respectively. (*success!*)
 
 ```
 <class 'pandas.core.frame.DataFrame'>
@@ -113,8 +113,8 @@ Data columns (total 5 columns):
 Transaction ID    6 non-null int64
 Store ID          6 non-null object
 Product SKU       5 non-null object
-Purchase Date     6 non-null object
-Purchase Price    6 non-null object
+Purchase Date     6 non-null datetime64[ns]
+Purchase Price    6 non-null float64
 dtypes: int64(1), object(4)
 memory usage: 320.0+ bytes
 ```
