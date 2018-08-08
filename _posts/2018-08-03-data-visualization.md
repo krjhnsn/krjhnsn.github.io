@@ -227,8 +227,7 @@ data = [dict(
                 width = 2
                      ) ),
         colorbar = dict(
-            title = "# of Sightings")
-        )]
+            title = "# of Sightings"))]
 
 layout = dict(
         title = "Number of Reported Sasquatch Sightings by State<br>(It's Real!!)",
@@ -236,8 +235,7 @@ layout = dict(
             scope='usa',
             projection=dict(type='albers usa'),
             showlakes = True,
-            lakecolor = 'rgb(255, 255, 255)'),
-             )
+            lakecolor = 'rgb(255, 255, 255)'))
    
 figure = dict(data=data, layout=layout)
 filename = 'Sasquatch Sightings - It''s Real.html'
