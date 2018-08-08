@@ -4,7 +4,11 @@ title: "Data input/output in Python - useful concepts for any dataset"
 author: "Keir Johnson"
 ---
 
-Data is the life-blood (metaphorically speaking) that is pumped through the veins of any software program. Whether it is extracting data from a database, reading flat text files, or exchanging data via an API, understanding data exchange is fundamental. In the article below, I've highlighted what I consider to be important concepts for working with data in Python, specifically, for data processing or data science applications.
+A wise person once said:
+
+> "Data is the new bacon"
+
+I'm not sure what that actually means, but I like bacon and I also like data, so I guess it works! Whether it is extracting data from a database, reading flat text files, or exchanging data via an API, understanding data exchange is fundamental. In the article below, I've highlighted what I consider to be important concepts for working with data in Python, specifically, for data processing or data science applications.
 
 ### Pandas for data input/output
 
