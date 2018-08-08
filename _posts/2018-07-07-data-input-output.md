@@ -64,7 +64,7 @@ for column in column_list: # it's handy to have a list of the columns!
 df = df.fillna(value = 'NA')
 ```
 
-As pandas reads in a file, it will do its best to interpret the data type for each column. It's good to get into the habit of checking the data types of your DataFrame to avoid troubleshooting errors later. To see the data types pandas ended up assigning while reading in the file, you can use `info()`. 
+As pandas reads in a file, it will do its best to interpret the data type for each column. It's good to get into the habit of checking the data types of your DataFrame to avoid errors later. To see the data types pandas ended up assigning while reading in the file, you can use `info()`. 
 
 ```python
 # display columns in the DataFrame and their type (e.g., float, string, datetime)
