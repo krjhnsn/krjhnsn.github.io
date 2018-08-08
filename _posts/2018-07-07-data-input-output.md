@@ -35,12 +35,6 @@ Transaction ID | Store ID | Product SKU | Purchase Date | Purchase Price
 <br>
 The Python below demonstrates how we might read this data from a .csv file. Note that we specify the delimiting character (' , ' in this case).
 
-After reading in a file, it's usually a good idea to take a look at the first few rows using `head()` to check that we see some of the data we expect and that the data structure is intact. We can use `shape` to validate that the number of rows and columns in the resulting DataFrame matches what we expect from the source file.
-
-It's always a good idea to cleanse incoming data. There are quite a few possibilities for doing this depending on the type of data and the application. However, one option that I've found useful is to strip extra whitespace and newline characters using `strip()`. These sneaky extra characters can cause headaches when you're trying to join multiple datasets together or perform comparisons. In the example below, I use a `for` loop to iterate all the columns in the DataFrame and apply the `strip` function. Regex is also a useful tool for cleansing data. You can use regex to replace unneeded characters or validate that a string of characters (e.g., a phone number) follows a certain format (e.g., 111-111-1111).
-
-Depending on your application you may want to replace missing (null) values. Pandas provides an easy way to do this with the `fillna()` function. Below I have replaced missing values with the text 'NA'.
-
 ```python
 # import pandas
 import pandas as pd
@@ -53,7 +47,15 @@ df = pd.read_csv(path, sep = ',')
 
 # get list of column names in the dataframe (to be used later)
 colHeaders = df.columns.values.tolist()
+```
 
+After reading in a file, it's usually a good idea to take a look at the first few rows using `head()` to check that we see some of the data we expect and that the data structure is intact. We can use `shape` to validate that the number of rows and columns in the resulting DataFrame matches what we expect from the source file.
+
+It's always a good idea to cleanse incoming data. There are quite a few possibilities for doing this depending on the type of data and the application. However, one option that I've found useful is to strip extra whitespace and newline characters using `strip()`. These sneaky extra characters can cause headaches when you're trying to join multiple datasets together or perform comparisons. In the example below, I use a `for` loop to iterate all the columns in the DataFrame and apply the `strip` function. Regex is also a useful tool for cleansing data. You can use regex to replace unneeded characters or validate that a string of characters (e.g., a phone number) follows a certain format (e.g., 111-111-1111).
+
+Depending on your application you may want to replace missing (null) values. Pandas provides an easy way to do this with the `fillna()` function. Below I have replaced missing values with the text 'NA'.
+
+```python
 # inspect the first 3 rows of the dataframe to ensure the data was read in by pandas as expected
 df.head(3)
 
