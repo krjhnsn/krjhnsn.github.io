@@ -94,7 +94,7 @@ memory usage: 320.0+ bytes
 
 The 'Purchase Price' column also needs some work. The dollar sign on purchase price has resulted in the data being assigned the `object` data type which will cause problems if we try to perform calculations on this column, for example, calculate the total amount purchased at each store. We will have to convert this column to a numeric (e.g., int, float) data type.
 
-Now that we've reviewed the data types, we can go ahead and convert the 'Purchase Date' and 'Purchase Price' columns to the data types we need. The code below achieves this using pandas `to_datetime()` function to convert the 'Purchase Date' to a 'datetime' data type and some regex to remove the '$' in the 'Purchase Price' and convert it to a floating point number (float). Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
+Now that we've reviewed the data types, we can go ahead and convert the 'Purchase Date' and 'Purchase Price' columns to the data types we need. The code below achieves this using pandas `to_datetime()` function to convert the 'Purchase Date' to a 'datetime' data type and some regex to remove the '$' in the 'Purchase Price' and convert it to a floating point number (float).
 
 ```python
 # convert 'Purchase Date' string to datetime
@@ -102,6 +102,21 @@ df['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
 
 # convert 'Purchase Price' column to a number by removing the '$' and converting
 df['Purchase Price'] = df['Purchase Price'].replace('[$]', '', regex=True).astype(float)
+```
+
+Running `info()` again on the DataFrame will allow you to validate that, indeed, these operations worked as expected (*success!*)
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 5 columns):
+Transaction ID    6 non-null int64
+Store ID          6 non-null object
+Product SKU       5 non-null object
+Purchase Date     6 non-null object
+Purchase Price    6 non-null object
+dtypes: int64(1), object(4)
+memory usage: 320.0+ bytes
 ```
 
 All that time and effort spent on data exploration, cleansing, and data type casting now pays off. We can now perform interesting operations to the data such as finding all the purchases that took place in the month of July or calculating the total purchase amount for each store. Pandas makes writing the results back to a .csv file easy with the `to_csv` function.
