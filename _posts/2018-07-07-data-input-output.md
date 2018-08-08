@@ -133,7 +133,7 @@ Transaction ID|Store ID|Product SKU|Purchase Date|Purchase Price
 006|ABC||7/6/2018|$15.00
 ```
 
-To process this data, the file is first opened using `with open(filename, 'r') as f:`. Each line is read into a list using `readlines()`. Next, each line is split into its elements using `split('|')` and we check if there are five resulting elements. If five elements are found, then we add them to the list `keepRows` which is later converted to a DataFrame that holds the final data set. 
+To process this data, the file is first opened using `with open(filename, 'r') as f:`. Each line is then read into a list using `readlines()`. Next, each line is split into its elements using `split('|')` and we check if there are five resulting elements. If five elements are found, then we add them to the list `keepRows` which is later converted to a DataFrame that holds the final data set. 
 
 If five elements are not found, we add the contents of the row to a list of discarded rows with `discardedRows.append(discardedRow)`. This list could be used to generate a processing report that we can use to investigate why certain rows were discarded. Often, data integrity issues result from upstream processes that generate the original data set and having information about the discarded rows can be useful for troubleshooting!
 
