@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Data input/output in Python - useful concepts for any dataset"
+title: "Data input/output in Python - useful concepts for any data set"
 author: "Keir Johnson"
 ---
 
