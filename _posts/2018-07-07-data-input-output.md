@@ -4,7 +4,7 @@ title: "Data input/output in Python - useful concepts for any data set"
 author: "Keir Johnson"
 ---
 
-A wise person once said:
+A very wise person I know once said:
 
 > "Data is the new bacon."
 
