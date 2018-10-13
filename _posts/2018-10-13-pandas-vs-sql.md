@@ -55,7 +55,7 @@ Now, forge on to see the code!
 <br>
 <br>
 
-### Display a list of columns and their data type
+### 1. Display a list of columns and their data type
 ```python
 df.dtypes
 ```
@@ -65,7 +65,7 @@ from information_schema.columns
 where table_name = 'animal_kingdom'
 ```
 
-### Display top N number of rows (5 in this case)
+### 2. Display top N number of rows (5 in this case)
 ```python
 df.head(5)
 ```
@@ -74,7 +74,7 @@ select * from animal_kingdom
 limit 5
 ```
 
-### Rename a column
+### 3. Rename a column
 ```python
 df = df.rename(columns = {'animal name': 'Animal Name'})
 ```
@@ -83,7 +83,7 @@ alter table animal_kingdom
 rename column "animal name" to "Animal Name"
 ```
 
-### Select a subset of columns 
+### 4. Select a subset of columns 
 ```python
 dfSubset = df[['animal name'
                ,'strength'
@@ -97,7 +97,7 @@ into temp animal_subset
 from animal_kingdom
 ```
 
-### Convert a column to a different data type
+### 5. Convert a column to a different data type
 ```python
 df['legs'] = df['legs'].astype(str) # convert numeric to string
 df['legs'] = pd.to_numeric(df['legs']) # convert string to numeric (or at least attempt to)
@@ -111,7 +111,7 @@ select cast(legs as text) -- 'cast' also a good option
 from animal_kingdom
 ```
 
-### Calculate the difference (in days) between two dates
+### 6. Calculate the difference (in days) between two dates
 ```python
 df['days diff'] = (df['last seen date'] - df['first seen date']).dt.days
 ```
@@ -121,7 +121,7 @@ select
 from animal_kingdom
 ```
 
-### Perform arithmetic opertations
+### 7. Perform arithmetic opertations
 ```python
 df['total attributes'] = df['strength'] + df['speed'] + df['intelligence']
 ```
@@ -131,7 +131,7 @@ select
 from animal_kingdom
 ```
 
-### Select rows where date field meets some condition
+### 8. Select rows where date field meets some condition
 ```python
 import datetime
 df2018 = df[df['first seen date'] > datetime.date(2018, 1, 1)]
@@ -142,7 +142,7 @@ from animal_kingdom
 where "first seen date" > '2018-01-01'
 ```
 
-### Select rows based on multiple conditions
+### 9. Select rows based on multiple conditions
 ```python
 dfSubset = df[(df['intelligence'] > 80) & (df['aquatic'] == 1)]
 ```
@@ -151,7 +151,7 @@ select * from animal_kingdom
 where intelligence > 80 and aquatic = 1
 ```
 
-### Apply a function or if/then/else logic to obtain a result
+### 10. Apply a function or if/then/else logic to obtain a result
 ```python
 # define the function
 def animalEnvironment(aquatic, airborne):
@@ -172,7 +172,7 @@ df['environment'] = df.apply(lambda row: animalEnvironment(row['aquatic'],row['a
 drop table if exists environment;
 select *,
 case
-	when aquatic = 1 then 'aquatic'
+    when aquatic = 1 then 'aquatic'
     when airborne = 1 then 'airborne'
     else 'land'
 end as environment
@@ -180,7 +180,7 @@ into temp environment
 from animal_kingdom
 ```
 
-### Calculate aggregate statistics (in this case, average) on numeric columns, group by other column(s)
+### 11. Calculate aggregate statistics (in this case, average) on numeric columns, group by other column(s)
 ```python
 dfAvg = df.groupby(['environment']).mean().reset_index()
 ```
@@ -199,7 +199,7 @@ from environment
 group by environment
 ```
 
-### Calculate aggregate statistics (in this case, count) on numeric columns, group by other column(s)
+### 12. Calculate aggregate statistics (in this case, count) on numeric columns, group by other column(s)
 ```python
 dfCount = df.groupby(['environment'])['animal name'].count().reset_index()
 ```
@@ -213,7 +213,7 @@ from environment
 group by environment
 ```
 
-### Perform joins
+### 13. Perform joins
 ```python
 dfJoined = pd.merge(dfAvg # table 1
                     ,dfCount # table 2 to join to table 1
