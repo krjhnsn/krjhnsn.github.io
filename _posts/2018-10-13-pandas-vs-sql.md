@@ -56,9 +56,11 @@ Now, forge on to see the code!
 <br>
 
 ### 1. Display a list of columns and their data type
+Python:
 ```python
 df.dtypes
 ```
+SQL:
 ```sql
 select column_name, data_type 
 from information_schema.columns 
@@ -66,30 +68,36 @@ where table_name = 'animal_kingdom'
 ```
 
 ### 2. Display top N number of rows (5 in this case)
+Python:
 ```python
 df.head(5)
 ```
+SQL:
 ```sql
 select * from animal_kingdom
 limit 5
 ```
 
 ### 3. Rename a column
+Python:
 ```python
 df = df.rename(columns = {'animal name': 'Animal Name'})
 ```
+SQL:
 ```sql
 alter table animal_kingdom
 rename column "animal name" to "Animal Name"
 ```
 
 ### 4. Select a subset of columns 
+Python:
 ```python
 dfSubset = df[['animal name'
                ,'strength'
                ,'intelligence'
                ,'speed']]
 ```
+SQL:
 ```sql
 drop table if exists animal_subset;
 select "animal name", "strength", "intelligence"
@@ -98,11 +106,13 @@ from animal_kingdom
 ```
 
 ### 5. Convert a column to a different data type
+Python:
 ```python
 df['legs'] = df['legs'].astype(str) # convert numeric to string
 df['legs'] = pd.to_numeric(df['legs']) # convert string to numeric (or at least attempt to)
 df['last seen date'] = pd.to_datetime(df['last seen date']) # convert string to datetime
 ```
+SQL:
 ```sql
 alter table animal_kingdom alter column legs type text # convert numeric to string
 alter table animal_kingdom alter column legs type int using legs::float; # convert string to numeric (or at least attempt to)
@@ -112,9 +122,11 @@ from animal_kingdom
 ```
 
 ### 6. Calculate the difference (in days) between two dates
+Python:
 ```python
 df['days diff'] = (df['last seen date'] - df['first seen date']).dt.days
 ```
+SQL:
 ```sql
 select
 ("last seen date" - "first seen date") as "days diff"
@@ -122,9 +134,11 @@ from animal_kingdom
 ```
 
 ### 7. Perform arithmetic opertations
+Python:
 ```python
 df['total attributes'] = df['strength'] + df['speed'] + df['intelligence']
 ```
+SQL:
 ```sql
 select
 ("strength" + "speed" + "intelligence") as "total attributes"
@@ -132,10 +146,12 @@ from animal_kingdom
 ```
 
 ### 8. Select rows where date field meets some condition
+Python:
 ```python
 import datetime
 df2018 = df[df['first seen date'] > datetime.date(2018, 1, 1)]
 ```
+SQL:
 ```sql
 select *
 from animal_kingdom
@@ -143,15 +159,18 @@ where "first seen date" > '2018-01-01'
 ```
 
 ### 9. Select rows based on multiple conditions
+Python:
 ```python
 dfSubset = df[(df['intelligence'] > 80) & (df['aquatic'] == 1)]
 ```
+SQL:
 ```sql
 select * from animal_kingdom
 where intelligence > 80 and aquatic = 1
 ```
 
 ### 10. Apply a function or if/then/else logic to obtain a result
+Python:
 ```python
 # define the function
 def animalEnvironment(aquatic, airborne):
@@ -168,6 +187,7 @@ def animalEnvironment(aquatic, airborne):
 # apply the function and store the result in a new column
 df['environment'] = df.apply(lambda row: animalEnvironment(row['aquatic'],row['airborne']),axis = 1)
 ```
+SQL:
 ```sql
 drop table if exists environment;
 select *,
@@ -181,9 +201,11 @@ from animal_kingdom
 ```
 
 ### 11. Calculate aggregate statistics (in this case, average) on numeric columns, group by other column(s)
+Python:
 ```python
 dfAvg = df.groupby(['environment']).mean().reset_index()
 ```
+SQL:
 ```sql
 drop table if exists environment_avg;
 select
@@ -200,9 +222,11 @@ group by environment
 ```
 
 ### 12. Calculate aggregate statistics (in this case, count) on numeric columns, group by other column(s)
+Python:
 ```python
 dfCount = df.groupby(['environment'])['animal name'].count().reset_index()
 ```
+SQL:
 ```sql
 drop table if exists environment_count;
 select
@@ -214,6 +238,7 @@ group by environment
 ```
 
 ### 13. Perform joins
+Python:
 ```python
 dfJoined = pd.merge(dfAvg # table 1
                     ,dfCount # table 2 to join to table 1
@@ -221,6 +246,7 @@ dfJoined = pd.merge(dfAvg # table 1
                     ,left_on = ['environment'] # column(s) used for join
                     ,right_on = ['environment']) # column(s) used for join
 ```
+SQL:
 ```sql
 select
 avg.*,
