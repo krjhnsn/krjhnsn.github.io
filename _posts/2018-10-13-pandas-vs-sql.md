@@ -9,7 +9,7 @@ A python, a panda, and an elephant walk into a bar...
 max-width="100%" file="/assets/python-panda-elephant-notext.png" alt="data animals"
 caption="Python, Pandas, PostgreSQL" %}
 
-If you're coming from an SQL background, using pandas syntax can feel a bit awkward at first and departing from the trusty select statement ("select ... from ... where ...") feels a bit like blasphemy. Don't worry, while SQL is definitely better suited for some tasks, pandas contains all the essential functionality (and much more) that you could ever need for a data-related project.
+If you're coming from an SQL background, pandas syntax can feel a bit awkward at first and departing from the trusty select statement ("select ... from ... where ...") feels a bit like blasphemy. Don't worry, while SQL is definitely better suited for some tasks, pandas contains all the essential functionality (and much more) that you could ever need for a data-related project.
 
 That said, if you're learning to switch between SQL and pandas, it's helpful to see how they relate. Below are the pandas operations I use most often with their SQL equivalents. Note, [PostgreSQL](https://www.postgresql.org/) was used in these examples which will have some variation in syntax compared to something like SQL Server.
 
