@@ -53,6 +53,7 @@ CREATE TABLE public.animal_kingdom
 <br>
 Now, forge on to see the code!
 <br>
+<br>
 
 ### Display a list of columns and their data type
 ```python
