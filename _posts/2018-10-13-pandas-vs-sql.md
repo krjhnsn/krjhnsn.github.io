@@ -23,7 +23,6 @@ antelope | 0 | 0 | 4 | 91 | 98 | 72 | 7/6/18 | 12/17/17
 bass | 0 | 1 | 0 | 42 | 40 | 59 | 7/7/18 | 12/11/17
 bear | 0 | 0 | 4 | 60 | 70 | 90 | 7/8/18 | 11/20/17
 boar | 0 | 0 | 4 | 24 | 6 | 70 | 7/9/18 | 9/24/17
-
 <br/>
 If you want to give the examples a try, you may want to populate a pandas dataframe object with the example dataset using the code below:
 
@@ -50,6 +49,8 @@ CREATE TABLE public.animal_kingdom
     CONSTRAINT animal_kingdom_pkey PRIMARY KEY ("animal name")
 )
 ```
+
+Now, forge on to see the code!
 
 ### Display a list of columns and their data type
 ```python
