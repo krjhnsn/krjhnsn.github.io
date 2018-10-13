@@ -4,12 +4,7 @@ title: "Python Panda Elephant"
 author: "Keir Johnson"
 ---
 
-# Python Panda Elephant
-### Often used Pandas operations and SQL Equivalents
-
 A python, a panda, and an elephant walk into a bar...
-
-Image
 {% include images.html
 max-width="100%" file="/assets/python-panda-elephant-notext.png" alt="data animals"
 caption="Python, Pandas, PostgreSQL" %}
