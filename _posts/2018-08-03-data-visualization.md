@@ -84,7 +84,7 @@ bothData = df[(df['Sex'] == 'Both Sexes') & (df['Race'] == 'All Races')]
 
 Now we can build out the objects needed for the plotly visualization. First, we will create the trace objects, one for each trend line. In this example, the response variable to be plotted on the y-axis of the chart is life expectancy (the 'Average Life Expectancy (Years)' column in the data set). Time (years) will be plotted on the x-axis (the 'Year' column in the data set). Configuring the x and y variables is achieved by assigning the appropriate column from the appropriate DataFrame to the 'x' and 'y' keys in the trace objects as seen below.
 
-In addition to configuring the x and y variables, the 'name' key is configured so that the trend line name will be displayed in a chart legend. The 'mode' key is assigned a value of 'lines+makers' which controls the appearance of the line. Last, each trace object is put into ```data``` object which will be used by plotly to generate the three trend lines on the chart.
+In addition to configuring the x and y variables, the 'name' key is configured so that the trend line name will be displayed in a chart legend. The 'mode' key is assigned a value of 'lines+markers' which controls the appearance of the line. Last, each trace object is put into ```data``` object which will be used by plotly to generate the three trend lines on the chart.
 
 ```python
 femaleTrace =  go.Scatter(
