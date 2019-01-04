@@ -20,8 +20,6 @@ Some operating systems come with a version of Python installed, but the go-to, h
 
 
 <div id="qtesting" style="display:block;">
-<hr>
-<hr>
 </div>
 
 
