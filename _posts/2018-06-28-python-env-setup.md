@@ -18,9 +18,12 @@ Before diving in, it can be helpful to familiarize yourself with Python syntax a
 
 Some operating systems come with a version of Python installed, but the go-to, highly recommended starting point is to install the [Anaconda distribution.](https://www.anaconda.com/distribution/) 
 
+
+<div id="qtesting" style="display:block;">
 <hr>
-<div id="qtesting" style="display:block;"></div>
 <hr>
+</div>
+
 
 The Anaconda distribution includes Spyder and Jupyter Notebook to write and run Python code and all the most commonly used data science packages. Anaconda also includes tools for installing new packages quickly and easily, automatically managing dependencies between packages, creating multiple development environments, and much more. It's great, install it now!
 
