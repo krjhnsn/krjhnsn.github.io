@@ -4,7 +4,7 @@ title: "Setup your Python development environment"
 author: "Keir Johnson"
 ---
 
-<div id="qtesting2" style="display:block;"></div>
+<div id="qtesting2"></div>
 
 TLDR; Install the [Anaconda distribution,](https://www.anaconda.com/distribution/) open up Spyder or a Jupyter Notebook, and read the very helpful documentation to get started writing Python.
 
