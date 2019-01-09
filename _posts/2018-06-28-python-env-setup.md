@@ -4,6 +4,8 @@ title: "Setup your Python development environment"
 author: "Keir Johnson"
 ---
 
+<div id="qtesting2" style="display:block;"></div>
+
 TLDR; Install the [Anaconda distribution,](https://www.anaconda.com/distribution/) open up Spyder or a Jupyter Notebook, and read the very helpful documentation to get started writing Python.
 
 ~~~
@@ -19,9 +21,7 @@ Before diving in, it can be helpful to familiarize yourself with Python syntax a
 Some operating systems come with a version of Python installed, but the go-to, highly recommended starting point is to install the [Anaconda distribution.](https://www.anaconda.com/distribution/) 
 
 
-<div id="qtesting" style="display:block;">
-</div>
-
+<div id="qtesting" style="display:block;"></div>
 
 The Anaconda distribution includes Spyder and Jupyter Notebook to write and run Python code and all the most commonly used data science packages. Anaconda also includes tools for installing new packages quickly and easily, automatically managing dependencies between packages, creating multiple development environments, and much more. It's great, install it now!
 
