@@ -67,6 +67,7 @@ Last, try running section 3. You'll notice that an error is displayed in the con
 If you're just getting started, the components of the Anaconda distribution that you'll use that most frequently are Conda (the package and environment management system) and one of the included development environments (Spyder, Jupyter Notebook). Environments allow you to create specific conditions for projects and to isolate those conditions from other projects. Packages are "add-ons" that expand the capabilities of Python, e.g., data visualization, file input/output, machine learning, etc.
 
 <div id="qtesting2" style="display:inline-block;"></div>
+<div id="qtesting1" style="display:inline-block;"></div>
 
 In the beginning, you won't need to worry about adding new packages or managing multiple environments, however, inevitably, you'll run into a case where it will be needed. I recommend reading through the [Conda documentation](https://conda.io/docs/) after getting to the end of this article to get familiar with these concepts.
 
